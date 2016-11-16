@@ -5,6 +5,7 @@
  */
 package metodos;
 
+import java.math.BigDecimal;
 import java.util.Objects;
 import org.math.plot.Plot2DPanel;
 
@@ -221,11 +222,11 @@ public class EulierMejorado extends javax.swing.JFrame {
 
     private void eulierMejCalcActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eulierMejCalcActionPerformed
         String fun = eulierMejFunc.getText();
-        Double h = Double.parseDouble(eulierMejH.getText());
-        Double xfin = Double.parseDouble(eulierMejXFin.getText());
+        Double h = redondeo(Double.parseDouble(eulierMejH.getText()),4);
+        Double xfin = redondeo(Double.parseDouble(eulierMejXFin.getText()),4);
         Double[] yp = new Double[50];
         Double[] yc = new Double[50];
-        Double x  = Double.parseDouble(eulierMejX0.getText());
+        Double x  = redondeo(Double.parseDouble(eulierMejX0.getText()),4);
         //Double[] y = new Double[50];
         int i = 1;
         yc[1] = Double.parseDouble(eulierMejY0.getText());
@@ -234,9 +235,9 @@ public class EulierMejorado extends javax.swing.JFrame {
         do{
             
             System.out.println("DO " +i);
-            yp[i+1] = yc[i] + h * fx.evaluar(x, yc[i]);
-            yc[i+1] = yc[i] + (h/2) *((fx.evaluar(x, yc[i]))+(fx.evaluar((x+h), yp[i+1])));
-            x = x + h;
+            yp[i+1] = redondeo(yc[i] + h * fx.evaluar(x, yc[i]),4);
+            yc[i+1] = redondeo(yc[i] + (h/2) *((fx.evaluar(x, yc[i]))+(fx.evaluar((x+h), yp[i+1]))),4);
+            x = redondeo(x + h, 4);
             i++;
             
             System.out.println("x; " + x);
@@ -247,7 +248,12 @@ public class EulierMejorado extends javax.swing.JFrame {
   
     }//GEN-LAST:event_eulierMejCalcActionPerformed
 
-    
+     public double redondeo(double n, int d){
+          BigDecimal bigDecimal = new BigDecimal(n);
+          bigDecimal = bigDecimal.setScale(d, BigDecimal.ROUND_HALF_UP);
+          return bigDecimal.doubleValue();
+     }
+
     //<>
     /**
      * @param args the command line arguments
