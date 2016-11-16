@@ -9,7 +9,7 @@ package metodos;
  *
  * @author Eduardo
  */
-public class iteracion {
+public class Iteracion {
     public Integer i;
     public Double a;
     public Double x;
@@ -19,10 +19,10 @@ public class iteracion {
     public Double fb;
     public Double err;
     
-    public iteracion(){
+    public Iteracion(){
     }
     
-    public iteracion(Integer i, Double a, Double x, Double b, Double fa, Double fx , Double fb, Double err){
+    public Iteracion(Integer i, Double a, Double x, Double b, Double fa, Double fx , Double fb, Double err){
         this.i =  i;
         this.a = a;
         this.x = x;
@@ -33,7 +33,7 @@ public class iteracion {
         this.err = err;
     }
     
-    public iteracion(Integer i, Double x, Double err){
+    public Iteracion(Integer i, Double x, Double err){
         this.i =  i;
         this.x = x;
         this.err = err;
