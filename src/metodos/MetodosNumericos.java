@@ -5,6 +5,10 @@
  */
 package metodos;
 
+import metodos.PrimerDepartamental.RaizDos;
+import metodos.TercerDepartamental.EulierMejorado;
+import metodos.TercerDepartamental.Eulier;
+
 /**
  *
  * @author Eduardo
@@ -30,6 +34,7 @@ public class MetodosNumericos extends javax.swing.JFrame {
         label1 = new java.awt.Label();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
+        jButton1 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         rectangulos = new javax.swing.JButton();
@@ -41,15 +46,28 @@ public class MetodosNumericos extends javax.swing.JFrame {
 
         label1.setText("MÉTODOS NUMÉRICOS");
 
+        jButton1.setText("Raíz De Dos");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 524, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jButton1)
+                .addContainerGap(425, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 90, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addComponent(jButton1)
+                .addContainerGap(37, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Primer Departamental", jPanel1);
@@ -79,6 +97,11 @@ public class MetodosNumericos extends javax.swing.JFrame {
         });
 
         eulier.setText("Eulier");
+        eulier.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                eulierActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -128,7 +151,7 @@ public class MetodosNumericos extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(33, 33, 33)
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 118, Short.MAX_VALUE)
+                .addComponent(jTabbedPane1)
                 .addContainerGap())
         );
 
@@ -139,6 +162,16 @@ public class MetodosNumericos extends javax.swing.JFrame {
         EulierMejorado em = new EulierMejorado();
         em.setVisible(true);
     }//GEN-LAST:event_eulierMejoradoActionPerformed
+
+    private void eulierActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eulierActionPerformed
+        Eulier e = new Eulier();
+        e.setVisible(true);
+    }//GEN-LAST:event_eulierActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+       RaizDos rd= new RaizDos();
+       rd.setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -178,6 +211,7 @@ public class MetodosNumericos extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton eulier;
     private javax.swing.JButton eulierMejorado;
+    private javax.swing.JButton jButton1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
