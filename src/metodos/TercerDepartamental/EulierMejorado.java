@@ -238,7 +238,7 @@ public class EulierMejorado extends javax.swing.JFrame {
 
      public double redondeo(double n, int d){
           BigDecimal bigDecimal = new BigDecimal(n);
-          bigDecimal = bigDecimal.setScale(d, BigDecimal.ROUND_HALF_UP);
+          bigDecimal = bigDecimal.setScale(d, BigDecimal.ROUND_HALF_EVEN);
           return bigDecimal.doubleValue();
      }
 

@@ -5,7 +5,11 @@
  */
 package metodos;
 
+import metodos.PrimerDepartamental.Biseccion;
+import metodos.PrimerDepartamental.NewtonRaphson;
 import metodos.PrimerDepartamental.RaizDos;
+import metodos.PrimerDepartamental.ReglaFalsa;
+import metodos.SegundoDepartamental.GaussSeidel;
 import metodos.TercerDepartamental.EulierMejorado;
 import metodos.TercerDepartamental.Eulier;
 
@@ -34,22 +38,52 @@ public class MetodosNumericos extends javax.swing.JFrame {
         label1 = new java.awt.Label();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
+        raizDos = new javax.swing.JButton();
+        biseccion = new javax.swing.JButton();
+        reglaFalsa = new javax.swing.JButton();
+        newtonRaphson = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
+        gaussSeidel = new javax.swing.JButton();
+        minimosCuadrados = new javax.swing.JButton();
+        lagrangePrimer = new javax.swing.JButton();
+        lagrangeSegundo = new javax.swing.JButton();
+        jacobi = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
-        rectangulos = new javax.swing.JButton();
         trapecios = new javax.swing.JButton();
         eulierMejorado = new javax.swing.JButton();
         eulier = new javax.swing.JButton();
+        Metodo = new javax.swing.JButton();
+        rectangulos = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         label1.setText("MÉTODOS NUMÉRICOS");
 
-        jButton1.setText("Raíz De Dos");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        raizDos.setText("Raíz De Dos");
+        raizDos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                raizDosActionPerformed(evt);
+            }
+        });
+
+        biseccion.setText("Bisección");
+        biseccion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                biseccionActionPerformed(evt);
+            }
+        });
+
+        reglaFalsa.setText("Regla Falsa");
+        reglaFalsa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                reglaFalsaActionPerformed(evt);
+            }
+        });
+
+        newtonRaphson.setText("Newton Raphson");
+        newtonRaphson.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                newtonRaphsonActionPerformed(evt);
             }
         });
 
@@ -59,33 +93,98 @@ public class MetodosNumericos extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton1)
-                .addContainerGap(425, Short.MAX_VALUE))
+                .addComponent(raizDos)
+                .addGap(40, 40, 40)
+                .addComponent(biseccion)
+                .addGap(39, 39, 39)
+                .addComponent(reglaFalsa)
+                .addGap(30, 30, 30)
+                .addComponent(newtonRaphson)
+                .addContainerGap(164, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(30, 30, 30)
-                .addComponent(jButton1)
-                .addContainerGap(37, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(biseccion)
+                    .addComponent(reglaFalsa)
+                    .addComponent(newtonRaphson)
+                    .addComponent(raizDos))
+                .addContainerGap(26, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Primer Departamental", jPanel1);
+
+        gaussSeidel.setText("Gauss Seidel");
+        gaussSeidel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                gaussSeidelActionPerformed(evt);
+            }
+        });
+
+        minimosCuadrados.setText("Mínimos Cuadrados");
+        minimosCuadrados.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                minimosCuadradosActionPerformed(evt);
+            }
+        });
+
+        lagrangePrimer.setText("Lagrange Primer Grado");
+        lagrangePrimer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                lagrangePrimerActionPerformed(evt);
+            }
+        });
+
+        lagrangeSegundo.setText("Lagrange Segundo Grado");
+        lagrangeSegundo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                lagrangeSegundoActionPerformed(evt);
+            }
+        });
+
+        jacobi.setText("Jacobi");
+        jacobi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jacobiActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 524, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap(44, Short.MAX_VALUE)
+                .addComponent(gaussSeidel)
+                .addGap(18, 18, 18)
+                .addComponent(lagrangePrimer)
+                .addGap(18, 18, 18)
+                .addComponent(lagrangeSegundo)
+                .addGap(18, 18, 18)
+                .addComponent(jacobi)
+                .addGap(97, 97, 97))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(260, 260, 260)
+                .addComponent(minimosCuadrados)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 90, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(gaussSeidel)
+                    .addComponent(lagrangePrimer)
+                    .addComponent(lagrangeSegundo)
+                    .addComponent(jacobi))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
+                .addComponent(minimosCuadrados)
+                .addContainerGap())
         );
 
         jTabbedPane1.addTab("Segundo Departamental", jPanel2);
-
-        rectangulos.setText("Rectángulos");
 
         trapecios.setText("Trapecios");
 
@@ -103,6 +202,15 @@ public class MetodosNumericos extends javax.swing.JFrame {
             }
         });
 
+        Metodo.setText("Método");
+        Metodo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MetodoActionPerformed(evt);
+            }
+        });
+
+        rectangulos.setText("Rectángulos");
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -110,24 +218,27 @@ public class MetodosNumericos extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(rectangulos)
-                .addGap(32, 32, 32)
+                .addGap(18, 18, 18)
                 .addComponent(trapecios)
-                .addGap(39, 39, 39)
+                .addGap(18, 18, 18)
                 .addComponent(eulier)
-                .addGap(45, 45, 45)
+                .addGap(18, 18, 18)
                 .addComponent(eulierMejorado)
-                .addContainerGap(62, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(Metodo)
+                .addContainerGap(162, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap(37, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(rectangulos)
                     .addComponent(trapecios)
                     .addComponent(eulier)
-                    .addComponent(eulierMejorado))
-                .addContainerGap(56, Short.MAX_VALUE))
+                    .addComponent(eulierMejorado)
+                    .addComponent(Metodo))
+                .addGap(19, 19, 19))
         );
 
         jTabbedPane1.addTab("Tercer Departamental", jPanel3);
@@ -152,7 +263,7 @@ public class MetodosNumericos extends javax.swing.JFrame {
                 .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(33, 33, 33)
                 .addComponent(jTabbedPane1)
-                .addContainerGap())
+                .addGap(70, 70, 70))
         );
 
         pack();
@@ -168,10 +279,50 @@ public class MetodosNumericos extends javax.swing.JFrame {
         e.setVisible(true);
     }//GEN-LAST:event_eulierActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void raizDosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_raizDosActionPerformed
        RaizDos rd= new RaizDos();
        rd.setVisible(true);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_raizDosActionPerformed
+
+    private void biseccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_biseccionActionPerformed
+        Biseccion b = new Biseccion();
+        b.setVisible(true);
+    }//GEN-LAST:event_biseccionActionPerformed
+
+    private void reglaFalsaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reglaFalsaActionPerformed
+        ReglaFalsa rf = new ReglaFalsa();
+        rf.setVisible(true);
+    }//GEN-LAST:event_reglaFalsaActionPerformed
+
+    private void newtonRaphsonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newtonRaphsonActionPerformed
+        NewtonRaphson nr = new NewtonRaphson();
+        nr.setVisible(true);
+    }//GEN-LAST:event_newtonRaphsonActionPerformed
+
+    private void MetodoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MetodoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_MetodoActionPerformed
+
+    private void gaussSeidelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gaussSeidelActionPerformed
+        GaussSeidel gs = new GaussSeidel();
+        gs.setVisible(true);
+    }//GEN-LAST:event_gaussSeidelActionPerformed
+
+    private void minimosCuadradosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_minimosCuadradosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_minimosCuadradosActionPerformed
+
+    private void lagrangePrimerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lagrangePrimerActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lagrangePrimerActionPerformed
+
+    private void lagrangeSegundoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lagrangeSegundoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lagrangeSegundoActionPerformed
+
+    private void jacobiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jacobiActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jacobiActionPerformed
 
     /**
      * @param args the command line arguments
@@ -209,15 +360,24 @@ public class MetodosNumericos extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Metodo;
+    private javax.swing.JButton biseccion;
     private javax.swing.JButton eulier;
     private javax.swing.JButton eulierMejorado;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton gaussSeidel;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JButton jacobi;
     private java.awt.Label label1;
+    private javax.swing.JButton lagrangePrimer;
+    private javax.swing.JButton lagrangeSegundo;
+    private javax.swing.JButton minimosCuadrados;
+    private javax.swing.JButton newtonRaphson;
+    private javax.swing.JButton raizDos;
     private javax.swing.JButton rectangulos;
+    private javax.swing.JButton reglaFalsa;
     private javax.swing.JButton trapecios;
     // End of variables declaration//GEN-END:variables
 }

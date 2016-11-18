@@ -6,44 +6,61 @@
 package metodos.SegundoDepartamental;
 
 import java.math.BigDecimal;
-import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
-import metodos.Funcion;
-import org.math.plot.Plot2DPanel;
 
 /**
  *
  * @author Eduardo
  */
 public class GaussSeidel extends javax.swing.JFrame {
-   DefaultTableModel eulierTabla;
-    
-        
+
+    DefaultTableModel gaussSeidTabla;
+    private Integer i = 0;
+    private Double[] x, y, z;
+    private Double[] ex, ey, ez;
+    private Double b1, b2, b3;
+    private Double a11, a12, a13;
+    private Double a21, a22, a23;
+    private Double a31, a32, a33;
+    private Integer c;
+    private Double ec, id;
+    private Integer redon;
+
     /**
      * Creates new form Eulier
      */
     public GaussSeidel() {
-        
+
         initComponents();
         creaColumna();
-        
+        x = new Double[50];
+        ex = new Double[50];
+        y = new Double[50];
+        ey = new Double[50];
+        z = new Double[50];
+        ez = new Double[50];
 
     }
 
-    public void creaColumna(){
-         eulierTabla = (DefaultTableModel) eulierTab.getModel();
-         eulierTabla.addColumn("X");
-         eulierTabla.addColumn("Y");
+    public void creaColumna() {
+        gaussSeidTabla = (DefaultTableModel) gaussSeidTab.getModel();
+        gaussSeidTabla.addColumn("i");
+        gaussSeidTabla.addColumn("x(i)");
+        gaussSeidTabla.addColumn("y(i)");
+        gaussSeidTabla.addColumn("z(i)");
+        gaussSeidTabla.addColumn("ex");
+        gaussSeidTabla.addColumn("ey");
+        gaussSeidTabla.addColumn("ez");
     }
-    
-    public void creaFila(Double x, Double y){
-        eulierTabla = (DefaultTableModel) eulierTab.getModel();
-        
-        Double[] fila = {x, y};
-        eulierTabla.addRow(fila);
-    
+
+    public void creaFila(Double i, Double x, Double y, Double z, Double ex, Double ey, Double ez) {
+        gaussSeidTabla = (DefaultTableModel) gaussSeidTab.getModel();
+
+        Double[] fila = {i, x, y, z, ex, ey, ez};
+        gaussSeidTabla.addRow(fila);
+
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -53,22 +70,34 @@ public class GaussSeidel extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        eulierBack = new javax.swing.JButton();
+        gaussSeidBack = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        eulierX0 = new javax.swing.JTextField();
-        eulierY0 = new javax.swing.JTextField();
-        eulierH = new javax.swing.JTextField();
-        eulierXFin = new javax.swing.JTextField();
-        eulierFunc = new javax.swing.JTextField();
-        eulierCalc = new javax.swing.JButton();
-        eulierGraf = new javax.swing.JButton();
+        gaussSeidA11 = new javax.swing.JTextField();
+        gaussSeidA12 = new javax.swing.JTextField();
+        gaussSeidA13 = new javax.swing.JTextField();
+        gaussSeidCalc = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        eulierTab = new javax.swing.JTable();
+        gaussSeidTab = new javax.swing.JTable();
+        gaussSeidB1 = new javax.swing.JTextField();
+        gaussSeidA21 = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        gaussSeidA22 = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        gaussSeidA23 = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        gaussSeidB2 = new javax.swing.JTextField();
+        gaussSeidA31 = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        gaussSeidA32 = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
+        gaussSeidA33 = new javax.swing.JTextField();
+        jLabel10 = new javax.swing.JLabel();
+        gaussSeidC = new javax.swing.JTextField();
+        gaussSeidB3 = new javax.swing.JTextField();
+        jLabel11 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setName("EULIER"); // NOI18N
@@ -76,37 +105,31 @@ public class GaussSeidel extends javax.swing.JFrame {
         setSize(new java.awt.Dimension(800, 600));
         setType(java.awt.Window.Type.POPUP);
 
-        eulierBack.setText("Regresar");
-        eulierBack.addActionListener(new java.awt.event.ActionListener() {
+        gaussSeidBack.setText("Regresar");
+        gaussSeidBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                eulierBackActionPerformed(evt);
+                gaussSeidBackActionPerformed(evt);
             }
         });
 
-        jLabel1.setText("Eulier");
+        jLabel1.setText("Gauss Seidel");
 
-        jLabel2.setText("Dame \"x\"");
+        jLabel2.setText("x   +");
 
-        jLabel3.setText("Dame \"y\"");
+        jLabel3.setText("y   + ");
 
-        jLabel4.setText("Dame \"h\"");
+        jLabel4.setText("z   =");
 
-        jLabel5.setText("Dame \"x\" final");
+        gaussSeidA11.setName(""); // NOI18N
 
-        jLabel6.setText("Dame función");
-
-        eulierX0.setName(""); // NOI18N
-
-        eulierCalc.setText("Calcular");
-        eulierCalc.addActionListener(new java.awt.event.ActionListener() {
+        gaussSeidCalc.setText("Calcular");
+        gaussSeidCalc.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                eulierCalcActionPerformed(evt);
+                gaussSeidCalcActionPerformed(evt);
             }
         });
 
-        eulierGraf.setText("Graficar");
-
-        eulierTab.setModel(new javax.swing.table.DefaultTableModel(
+        gaussSeidTab.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -114,132 +137,188 @@ public class GaussSeidel extends javax.swing.JFrame {
 
             }
         ));
-        jScrollPane1.setViewportView(eulierTab);
+        jScrollPane1.setViewportView(gaussSeidTab);
+
+        gaussSeidA21.setName(""); // NOI18N
+
+        jLabel5.setText("x   +");
+
+        jLabel6.setText("y   + ");
+
+        jLabel7.setText("z   =");
+
+        gaussSeidA31.setName(""); // NOI18N
+
+        jLabel8.setText("x   +");
+
+        jLabel9.setText("y   + ");
+
+        jLabel10.setText("z   =");
+
+        jLabel11.setText("Dame \"c\"");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(55, 55, 55)
+                        .addGap(34, 34, 34)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 736, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(gaussSeidCalc)
+                                .addGap(86, 86, 86)
+                                .addComponent(gaussSeidBack)
+                                .addGap(42, 42, 42))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(114, 114, 114)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jLabel5)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(10, 10, 10)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(eulierX0, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(eulierXFin, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(97, 97, 97)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel6)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(jLabel3)
-                                                    .addComponent(eulierY0, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                .addGap(53, 53, 53)
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addGroup(layout.createSequentialGroup()
-                                                        .addGap(10, 10, 10)
-                                                        .addComponent(eulierH, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                    .addComponent(jLabel4)))))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addGap(107, 107, 107)
-                                        .addComponent(eulierFunc, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(gaussSeidA11, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(gaussSeidA12, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(gaussSeidA13, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel4)
+                                .addGap(18, 18, 18)
+                                .addComponent(gaussSeidB1, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(55, 55, 55)
-                                .addComponent(eulierCalc)
-                                .addGap(98, 98, 98)
-                                .addComponent(eulierGraf)))
-                        .addGap(18, 18, 18)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 283, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(eulierBack)))
-                .addContainerGap())
+                                .addComponent(gaussSeidA21, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel5)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(gaussSeidA22, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel6)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(gaussSeidA23, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel7)
+                                .addGap(18, 18, 18)
+                                .addComponent(gaussSeidB2, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(gaussSeidA31, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(gaussSeidC, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel8)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(gaussSeidA32, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jLabel9)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(gaussSeidA33, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jLabel10)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(gaussSeidB3, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(191, 191, 191)
+                        .addComponent(jLabel11)))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(gaussSeidA11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(gaussSeidA12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(gaussSeidA13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel4)
+                    .addComponent(gaussSeidB1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(gaussSeidA21, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(gaussSeidA22, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(gaussSeidA23, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6)
+                    .addComponent(jLabel7)
+                    .addComponent(gaussSeidB2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(gaussSeidA31, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(gaussSeidA32, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(gaussSeidA33, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel9)
+                    .addComponent(jLabel10)
+                    .addComponent(gaussSeidB3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addGap(21, 21, 21)
-                                .addComponent(jLabel2))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jLabel3)
-                                .addComponent(jLabel4)))
+                        .addGap(99, 99, 99)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 417, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(23, 23, 23)
+                        .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(eulierX0, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(eulierY0, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(eulierH, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(32, 32, 32)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel6))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(eulierXFin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(eulierFunc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(52, 52, 52)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(eulierCalc)
-                            .addComponent(eulierGraf)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(35, 35, 35)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 315, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
-                .addComponent(eulierBack)
-                .addGap(275, 275, 275))
+                            .addComponent(gaussSeidCalc)
+                            .addComponent(gaussSeidC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(gaussSeidBack))))
+                .addGap(22, 22, 22))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void eulierBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eulierBackActionPerformed
+    private void gaussSeidBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gaussSeidBackActionPerformed
         this.dispose();
-    }//GEN-LAST:event_eulierBackActionPerformed
+    }//GEN-LAST:event_gaussSeidBackActionPerformed
 
-    private void eulierCalcActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eulierCalcActionPerformed
-        String fun = eulierFunc.getText();
-        Double h = redondeo(Double.parseDouble(eulierH.getText()),4);
-        Double xfin = redondeo(Double.parseDouble(eulierXFin.getText()),4);
-        Double[] y = new Double[50];
-        Double x  = redondeo(Double.parseDouble(eulierX0.getText()),4);
-        Double a, b; 
-        int i = 1;
-        y[1] = Double.parseDouble(eulierY0.getText());
-        Funcion fx = new Funcion(fun);
-        creaFila(x, y[1]);
-        do{
-            y[i+1] = redondeo(y[i] + h * fx.evaluar(x, y[i]),4);
-            x = redondeo(x + h, 4);
+    private void gaussSeidCalcActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gaussSeidCalcActionPerformed
+        c= Integer.parseInt(gaussSeidC.getText());
+        a11 = Double.parseDouble(gaussSeidA11.getText());
+        a12 = Double.parseDouble(gaussSeidA12.getText());
+        a13 = Double.parseDouble(gaussSeidA13.getText());
+        b1 = Double.parseDouble(gaussSeidB1.getText());
+        a21 = Double.parseDouble(gaussSeidA21.getText());
+        a22 = Double.parseDouble(gaussSeidA22.getText());
+        a23 = Double.parseDouble(gaussSeidA23.getText());
+        b2 = Double.parseDouble(gaussSeidB2.getText());
+        a31 = Double.parseDouble(gaussSeidA31.getText());
+        a32 = Double.parseDouble(gaussSeidA32.getText());
+        a33 = Double.parseDouble(gaussSeidA33.getText());
+        b3 = Double.parseDouble(gaussSeidB3.getText());
+        x[0] = y[0] = z[0] = 0.0;
+        ex[0] = ey[0] = ez[0] = 0.0;
+        redon = (c + 2);
+        Double aux = (Math.pow(10, -c));
+        ec = redondeo((0.5 * aux), redon);
+        id = i * 1.0;
+        creaFila(id, x[i], y[i], z[i], ex[i], ey[i], ez[i]);
+        do {
             i++;
-            creaFila(x, y[i]);
-            System.out.println("x; " + x);
-            System.out.println("yp: " + y[i]);
-        }while(x<xfin);
-  
-  
-    }//GEN-LAST:event_eulierCalcActionPerformed
+            x[i] = redondeo(((b1 - (a12 * y[i - 1]) - (a13 * z[i - 1])) / a11), redon);
+            y[i] = redondeo(((b2 - (a21 * x[i - 1]) - (a23 * z[i - 1])) / a22), redon);
+            z[i] = redondeo(((b3 - (a31 * x[i - 1]) - (a32 * y[i - 1])) / a33), redon);
+            ex[i] = redondeo(Math.abs((x[i] - x[i - 1]) / x[i]), redon);
+            ey[i] = redondeo(Math.abs((y[i] - y[i - 1]) / y[i]), redon);
+            ez[i] = redondeo(Math.abs((z[i] - z[i - 1]) / z[i]), redon);
+            id = i * 1.0;
+            creaFila(id, x[i], y[i], z[i], ex[i], ey[i], ez[i]);
+        } while ((ec < ex[i]) || (ec < ey[i]) || (ec < ez[i]));
+    }//GEN-LAST:event_gaussSeidCalcActionPerformed
 
-     public double redondeo(double n, int d){
-          BigDecimal bigDecimal = new BigDecimal(n);
-          bigDecimal = bigDecimal.setScale(d, BigDecimal.ROUND_HALF_UP);
-          return bigDecimal.doubleValue();
-     }
+    public double redondeo(double n, int d) {
+        BigDecimal bigDecimal = new BigDecimal(n);
+        bigDecimal = bigDecimal.setScale(d, BigDecimal.ROUND_HALF_EVEN);
+        return bigDecimal.doubleValue();
+    }
 
     //<>
     /**
@@ -285,21 +364,33 @@ public class GaussSeidel extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton eulierBack;
-    private javax.swing.JButton eulierCalc;
-    private javax.swing.JTextField eulierFunc;
-    private javax.swing.JButton eulierGraf;
-    private javax.swing.JTextField eulierH;
-    private javax.swing.JTable eulierTab;
-    private javax.swing.JTextField eulierX0;
-    private javax.swing.JTextField eulierXFin;
-    private javax.swing.JTextField eulierY0;
+    private javax.swing.JTextField gaussSeidA11;
+    private javax.swing.JTextField gaussSeidA12;
+    private javax.swing.JTextField gaussSeidA13;
+    private javax.swing.JTextField gaussSeidA21;
+    private javax.swing.JTextField gaussSeidA22;
+    private javax.swing.JTextField gaussSeidA23;
+    private javax.swing.JTextField gaussSeidA31;
+    private javax.swing.JTextField gaussSeidA32;
+    private javax.swing.JTextField gaussSeidA33;
+    private javax.swing.JTextField gaussSeidB1;
+    private javax.swing.JTextField gaussSeidB2;
+    private javax.swing.JTextField gaussSeidB3;
+    private javax.swing.JButton gaussSeidBack;
+    private javax.swing.JTextField gaussSeidC;
+    private javax.swing.JButton gaussSeidCalc;
+    private javax.swing.JTable gaussSeidTab;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }

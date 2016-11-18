@@ -6,44 +6,47 @@
 package metodos.PrimerDepartamental;
 
 import java.math.BigDecimal;
-import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
-import metodos.Funcion;
-import org.math.plot.Plot2DPanel;
 
 /**
  *
  * @author Eduardo
  */
 public class ReglaFalsa extends javax.swing.JFrame {
-   DefaultTableModel eulierTabla;
-    
-        
+
+    DefaultTableModel reglaFalsaTabla;
+   Integer redon = 0;
+
     /**
      * Creates new form Eulier
      */
     public ReglaFalsa() {
-        
+
         initComponents();
         creaColumna();
-        
 
     }
 
-    public void creaColumna(){
-         eulierTabla = (DefaultTableModel) eulierTab.getModel();
-         eulierTabla.addColumn("X");
-         eulierTabla.addColumn("Y");
+    public void creaColumna() {
+        reglaFalsaTabla = (DefaultTableModel) reglaFalsaTab.getModel();
+        reglaFalsaTabla.addColumn("i");
+        reglaFalsaTabla.addColumn("a");
+        reglaFalsaTabla.addColumn("x(i)");
+        reglaFalsaTabla.addColumn("b");
+        reglaFalsaTabla.addColumn("f(a)");
+        reglaFalsaTabla.addColumn("f(x(i))");
+        reglaFalsaTabla.addColumn("f(b)");
+        reglaFalsaTabla.addColumn("Error");
     }
-    
-    public void creaFila(Double x, Double y){
-        eulierTabla = (DefaultTableModel) eulierTab.getModel();
-        
-        Double[] fila = {x, y};
-        eulierTabla.addRow(fila);
-    
+
+    public void creaFila(Double i, Double a, Double x, Double b, Double fa, Double xi, Double fb, Double err) {
+        reglaFalsaTabla = (DefaultTableModel) reglaFalsaTab.getModel();
+
+        Double[] fila = {i, a, x, b, fa, xi, fb, err};
+        reglaFalsaTabla.addRow(fila);
+
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -53,22 +56,17 @@ public class ReglaFalsa extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        eulierBack = new javax.swing.JButton();
+        reglaFalsaBack = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        eulierX0 = new javax.swing.JTextField();
-        eulierY0 = new javax.swing.JTextField();
-        eulierH = new javax.swing.JTextField();
-        eulierXFin = new javax.swing.JTextField();
-        eulierFunc = new javax.swing.JTextField();
-        eulierCalc = new javax.swing.JButton();
-        eulierGraf = new javax.swing.JButton();
+        reglaFalsaA = new javax.swing.JTextField();
+        reglaFalsaB = new javax.swing.JTextField();
+        reglaFalsaC = new javax.swing.JTextField();
+        reglaFalsaCalc = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        eulierTab = new javax.swing.JTable();
+        reglaFalsaTab = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setName("EULIER"); // NOI18N
@@ -76,37 +74,31 @@ public class ReglaFalsa extends javax.swing.JFrame {
         setSize(new java.awt.Dimension(800, 600));
         setType(java.awt.Window.Type.POPUP);
 
-        eulierBack.setText("Regresar");
-        eulierBack.addActionListener(new java.awt.event.ActionListener() {
+        reglaFalsaBack.setText("Regresar");
+        reglaFalsaBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                eulierBackActionPerformed(evt);
+                reglaFalsaBackActionPerformed(evt);
             }
         });
 
-        jLabel1.setText("Eulier");
+        jLabel1.setText("Regla Falsa");
 
-        jLabel2.setText("Dame \"x\"");
+        jLabel2.setText("Dame \"a\"");
 
-        jLabel3.setText("Dame \"y\"");
+        jLabel3.setText("Dame \"b\"");
 
-        jLabel4.setText("Dame \"h\"");
+        jLabel4.setText("Dame \"c\"");
 
-        jLabel5.setText("Dame \"x\" final");
+        reglaFalsaA.setName(""); // NOI18N
 
-        jLabel6.setText("Dame función");
-
-        eulierX0.setName(""); // NOI18N
-
-        eulierCalc.setText("Calcular");
-        eulierCalc.addActionListener(new java.awt.event.ActionListener() {
+        reglaFalsaCalc.setText("Calcular");
+        reglaFalsaCalc.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                eulierCalcActionPerformed(evt);
+                reglaFalsaCalcActionPerformed(evt);
             }
         });
 
-        eulierGraf.setText("Graficar");
-
-        eulierTab.setModel(new javax.swing.table.DefaultTableModel(
+        reglaFalsaTab.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -114,7 +106,7 @@ public class ReglaFalsa extends javax.swing.JFrame {
 
             }
         ));
-        jScrollPane1.setViewportView(eulierTab);
+        jScrollPane1.setViewportView(reglaFalsaTab);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -125,121 +117,102 @@ public class ReglaFalsa extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
-                        .addGap(55, 55, 55)
+                        .addGap(65, 65, 65)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel2)
-                                    .addComponent(jLabel5)
+                                    .addComponent(reglaFalsaA, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(66, 66, 66)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel3)
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(10, 10, 10)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(eulierX0, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(eulierXFin, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                        .addComponent(reglaFalsaB, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(59, 59, 59)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(97, 97, 97)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel6)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(jLabel3)
-                                                    .addComponent(eulierY0, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                .addGap(53, 53, 53)
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addGroup(layout.createSequentialGroup()
-                                                        .addGap(10, 10, 10)
-                                                        .addComponent(eulierH, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                    .addComponent(jLabel4)))))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addGap(107, 107, 107)
-                                        .addComponent(eulierFunc, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addComponent(reglaFalsaC, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel4)))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(55, 55, 55)
-                                .addComponent(eulierCalc)
-                                .addGap(98, 98, 98)
-                                .addComponent(eulierGraf)))
-                        .addGap(18, 18, 18)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 283, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(eulierBack)))
+                                .addGap(76, 76, 76)
+                                .addComponent(reglaFalsaCalc)
+                                .addGap(78, 78, 78)
+                                .addComponent(reglaFalsaBack)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 780, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addGap(21, 21, 21)
-                                .addComponent(jLabel2))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jLabel3)
-                                .addComponent(jLabel4)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(eulierX0, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(eulierY0, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(eulierH, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(32, 32, 32)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel6))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(eulierXFin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(eulierFunc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(52, 52, 52)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(eulierCalc)
-                            .addComponent(eulierGraf)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(35, 35, 35)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 315, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
-                .addComponent(eulierBack)
-                .addGap(275, 275, 275))
+                .addContainerGap(14, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(21, 21, 21)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel4))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(reglaFalsaA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(reglaFalsaB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(reglaFalsaC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(63, 63, 63)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(reglaFalsaBack)
+                    .addComponent(reglaFalsaCalc))
+                .addGap(42, 42, 42)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 428, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void eulierBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eulierBackActionPerformed
+    private void reglaFalsaBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reglaFalsaBackActionPerformed
         this.dispose();
-    }//GEN-LAST:event_eulierBackActionPerformed
+    }//GEN-LAST:event_reglaFalsaBackActionPerformed
 
-    private void eulierCalcActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eulierCalcActionPerformed
-        String fun = eulierFunc.getText();
-        Double h = redondeo(Double.parseDouble(eulierH.getText()),4);
-        Double xfin = redondeo(Double.parseDouble(eulierXFin.getText()),4);
-        Double[] y = new Double[50];
-        Double x  = redondeo(Double.parseDouble(eulierX0.getText()),4);
-        Double a, b; 
-        int i = 1;
-        y[1] = Double.parseDouble(eulierY0.getText());
-        Funcion fx = new Funcion(fun);
-        creaFila(x, y[1]);
-        do{
-            y[i+1] = redondeo(y[i] + h * fx.evaluar(x, y[i]),4);
-            x = redondeo(x + h, 4);
+    private void reglaFalsaCalcActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reglaFalsaCalcActionPerformed
+        Double[] x = new Double[50];
+        Double[] err = new Double[50];
+        Double id;
+        Double a = Double.parseDouble(reglaFalsaA.getText());
+        Double b = Double.parseDouble(reglaFalsaB.getText());
+        Integer c = Integer.parseInt(reglaFalsaC.getText());
+        redon = (c + 2);
+        Double aux = (Math.pow(10, -c));
+        Double ec =  redondeo((0.5 * aux), redon);
+        Integer i = 0;
+        err[i] = 1.0;
+        //x[i] = redondeo(((a + b) / 2),redon);
+        x[i] = redondeo((((a*f(b)) - (f(a)*b)) / (f(b)-f(a))),redon);
+        id = i*1.0;
+        creaFila(id, a, x[i], b, f(a), f(x[i]), f(b), err[i]);
+        while ((err[i] > ec)) {
+            if (((f(x[i]) * f(a)) < 0)) {
+                b = redondeo(x[i],redon);
+            }
+            else {
+                a = redondeo(x[i],redon);
+            }
             i++;
-            creaFila(x, y[i]);
-            System.out.println("x; " + x);
-            System.out.println("yp: " + y[i]);
-        }while(x<xfin);
-  
-  
-    }//GEN-LAST:event_eulierCalcActionPerformed
+            x[i] = redondeo((((a*f(b)) - (f(a)*b)) / (f(b)-f(a))),redon);
+            err[i] = redondeo((Math.abs((((x[i]-x[i-1]) / x[i])))),redon);
+            id = i*1.0;
+            creaFila(id, a, x[i], b, f(a), f(x[i]), f(b), err[i]);
+        }
+    }//GEN-LAST:event_reglaFalsaCalcActionPerformed
 
-     public double redondeo(double n, int d){
-          BigDecimal bigDecimal = new BigDecimal(n);
-          bigDecimal = bigDecimal.setScale(d, BigDecimal.ROUND_HALF_UP);
-          return bigDecimal.doubleValue();
-     }
+     Double f(Double x) {
+        double f = redondeo(((Math.pow(x, 3))- (4 * x) + 1),redon);
+        return (Double) f;
+    }
+    public double redondeo(double n, int d) {
+        BigDecimal bigDecimal = new BigDecimal(n);
+        bigDecimal = bigDecimal.setScale(d, BigDecimal.ROUND_HALF_EVEN);
+        return bigDecimal.doubleValue();
+    }
 
     //<>
     /**
@@ -275,6 +248,14 @@ public class ReglaFalsa extends javax.swing.JFrame {
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -285,21 +266,16 @@ public class ReglaFalsa extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton eulierBack;
-    private javax.swing.JButton eulierCalc;
-    private javax.swing.JTextField eulierFunc;
-    private javax.swing.JButton eulierGraf;
-    private javax.swing.JTextField eulierH;
-    private javax.swing.JTable eulierTab;
-    private javax.swing.JTextField eulierX0;
-    private javax.swing.JTextField eulierXFin;
-    private javax.swing.JTextField eulierY0;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextField reglaFalsaA;
+    private javax.swing.JTextField reglaFalsaB;
+    private javax.swing.JButton reglaFalsaBack;
+    private javax.swing.JTextField reglaFalsaC;
+    private javax.swing.JButton reglaFalsaCalc;
+    private javax.swing.JTable reglaFalsaTab;
     // End of variables declaration//GEN-END:variables
 }
