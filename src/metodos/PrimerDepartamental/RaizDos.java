@@ -52,13 +52,13 @@ public class RaizDos extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        eulierBack = new javax.swing.JButton();
+        raizDosBack = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         raizX0 = new javax.swing.JTextField();
         raizC = new javax.swing.JTextField();
-        eulierCalc = new javax.swing.JButton();
+        raizDosCalc = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         raizTab = new javax.swing.JTable();
 
@@ -68,14 +68,14 @@ public class RaizDos extends javax.swing.JFrame {
         setSize(new java.awt.Dimension(800, 600));
         setType(java.awt.Window.Type.POPUP);
 
-        eulierBack.setText("Regresar");
-        eulierBack.addActionListener(new java.awt.event.ActionListener() {
+        raizDosBack.setText("Regresar");
+        raizDosBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                eulierBackActionPerformed(evt);
+                raizDosBackActionPerformed(evt);
             }
         });
 
-        jLabel1.setText("Raíz De Dos");
+        jLabel1.setText("Raíz  De  Dos");
 
         jLabel2.setText("Dame inicio");
 
@@ -83,10 +83,10 @@ public class RaizDos extends javax.swing.JFrame {
 
         raizX0.setName(""); // NOI18N
 
-        eulierCalc.setText("Calcular");
-        eulierCalc.addActionListener(new java.awt.event.ActionListener() {
+        raizDosCalc.setText("Calcular");
+        raizDosCalc.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                eulierCalcActionPerformed(evt);
+                raizDosCalcActionPerformed(evt);
             }
         });
 
@@ -111,44 +111,41 @@ public class RaizDos extends javax.swing.JFrame {
                         .addComponent(jLabel1)
                         .addGap(55, 55, 55)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
                             .addGroup(layout.createSequentialGroup()
+                                .addGap(10, 10, 10)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel2)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(10, 10, 10)
-                                        .addComponent(raizX0, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(97, 97, 97)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel3)
-                                    .addComponent(raizC, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(raizX0, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(raizC, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(55, 55, 55)
-                                .addComponent(eulierCalc)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(eulierBack))))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 685, Short.MAX_VALUE))
-                .addGap(105, 105, 105))
+                                .addComponent(jLabel3)
+                                .addGap(252, 252, 252)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(raizDosBack)
+                                    .addComponent(raizDosCalc))))
+                        .addContainerGap(287, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 685, Short.MAX_VALUE)
+                        .addGap(105, 105, 105))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(21, 21, 21)
-                        .addComponent(jLabel2))
-                    .addComponent(jLabel3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(raizX0, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(raizC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(124, 124, 124)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(eulierCalc)
-                    .addComponent(eulierBack))
+                .addComponent(jLabel1)
+                .addGap(21, 21, 21)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(raizX0, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel3)
+                    .addComponent(raizDosCalc))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(raizC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(40, 40, 40)
+                .addComponent(raizDosBack)
+                .addGap(40, 40, 40)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 315, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(106, 106, 106))
         );
@@ -156,11 +153,11 @@ public class RaizDos extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void eulierBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eulierBackActionPerformed
+    private void raizDosBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_raizDosBackActionPerformed
         this.dispose();
-    }//GEN-LAST:event_eulierBackActionPerformed
+    }//GEN-LAST:event_raizDosBackActionPerformed
 
-    private void eulierCalcActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eulierCalcActionPerformed
+    private void raizDosCalcActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_raizDosCalcActionPerformed
         Double xin = redondeo(Double.parseDouble(raizX0.getText()),4);
         Integer c = Integer.parseInt(raizC.getText());
         Double[] err = new Double [50];
@@ -185,11 +182,11 @@ public class RaizDos extends javax.swing.JFrame {
         }
   
   
-    }//GEN-LAST:event_eulierCalcActionPerformed
+    }//GEN-LAST:event_raizDosCalcActionPerformed
 
      public double redondeo(double n, int d){
           BigDecimal bigDecimal = new BigDecimal(n);
-          bigDecimal = bigDecimal.setScale(d, BigDecimal.ROUND_HALF_UP);
+          bigDecimal = bigDecimal.setScale(d, BigDecimal.ROUND_HALF_EVEN);
           return bigDecimal.doubleValue();
      }
 
@@ -237,13 +234,13 @@ public class RaizDos extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton eulierBack;
-    private javax.swing.JButton eulierCalc;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField raizC;
+    private javax.swing.JButton raizDosBack;
+    private javax.swing.JButton raizDosCalc;
     private javax.swing.JTable raizTab;
     private javax.swing.JTextField raizX0;
     // End of variables declaration//GEN-END:variables
